@@ -1,0 +1,45 @@
+version: 1
+
+formatters:
+  brief:
+    format: '%(asctime)s %(name)-12s %(thread)d %(threadName)-15s %(levelname)-8s %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+    style: '%'
+    validate: True
+  precise:
+    format: '%(asctime)s %(name)-12s %(thread)d %(threadName)-15s %(levelname)-8s %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+    style: '%'
+    validate: True
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: precise
+    level: DEBUG
+    stream: ext://sys.stdout
+  file:
+    class: log_utils.MakeFileHandler
+    filename: log/logconfig.log
+    formatter: precise
+    mode: "a"
+    encoding: "utf-8"
+    maxBytes: 52428800
+    backupCount: 3
+
+loggers:
+  django:
+    handlers: [ console, file ]
+    level: 'WARNING'
+    propagate: False
+  __main__:
+    handlers: [ console, file ]
+    level: 'DEBUG'
+    propagate: False
+
+root:
+  handlers: [ console, file ]
+  level: 'INFO'
+
+
+disable_existing_loggers: True
