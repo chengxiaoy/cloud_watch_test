@@ -11,11 +11,13 @@ formatters:
     datefmt: '%Y-%m-%d %H:%M:%S'
     style: '%'
     validate: True
+  json:
+    (): log_utils.JsonFormatter
 
 handlers:
   console:
     class: logging.StreamHandler
-    formatter: precise
+    formatter: json
     level: DEBUG
     stream: ext://sys.stdout
   file:

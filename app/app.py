@@ -28,5 +28,14 @@ def log_msg(level: str, message):
     return "ok"
 
 
+@app.route("/exception")
+def trigger_exception():
+    try:
+        1 / 0
+    except Exception as e:
+        logger.exception(e)
+    return "ok"
+
+
 if __name__ == '__main__':
     app.run("0.0.0.0", 8000)

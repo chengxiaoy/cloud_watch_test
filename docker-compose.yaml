@@ -4,7 +4,7 @@ services:
       context: .
       target: builder
       tags:
-        - "cloud_watch_test:latest"
+        - "choirpremise.azurecr.io/cloud_watch_test:log-json-d"
     # flask requires SIGINT to stop gracefully
     # (default stop signal from Compose is SIGTERM)
     stop_signal: SIGINT
@@ -12,14 +12,3 @@ services:
       - '8000:8000'
     volumes:
       - ./app/log:/app/log
-
-#    logging:
-#      driver: awslogs
-#      options:
-#        awslogs-group: /my-app-log-group
-#        awslogs-region: cn-north-1
-##        awslogs-stream-prefix: cloud_watch_test
-#        awslogs-create-group: "true"
-#        awslogs-use-existing-group: "true"
-#        awsaccesskeyid: ${AWS_ACCESS_KEY_ID}
-#        awssecretkey: ${AWS_SECRET_ACCESS_KEY}
