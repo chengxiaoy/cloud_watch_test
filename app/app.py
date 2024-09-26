@@ -33,7 +33,7 @@ def trigger_exception():
     try:
         1 / 0
     except Exception as e:
-        logger.exception(e)
+        logger.exception(f"an error occur: {e}")
     return "ok"
 
 

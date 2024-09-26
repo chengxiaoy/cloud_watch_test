@@ -35,6 +35,7 @@ class JsonFormatter(logging.Formatter):
             'thread': record.thread,
             'threadName': record.threadName,
             'message': record.getMessage(),
+            'lineno': record.lineno,
         }
 
         # 添加其他字段，如异常信息等
@@ -49,7 +50,7 @@ class JsonFormatter(logging.Formatter):
 
 def load_log_config():
     try:
-        with open('log_config.yaml', 'r') as f:
+        with open('config/log_config.yaml', 'r') as f:
             dictConfig(yaml.safe_load(f))
     except Exception as e:
         logger.exception(f"load log config yaml file error: {e}")
