@@ -3,8 +3,8 @@ services:
     build:
       context: .
       target: builder
-      tags:
-        - "choirpremise.azurecr.io/cloud_watch_test:log-json-d"
+    image: choirpremise.azurecr.io/azure_log_test:latest
+    platform: linux/amd64
     # flask requires SIGINT to stop gracefully
     # (default stop signal from Compose is SIGTERM)
     stop_signal: SIGINT

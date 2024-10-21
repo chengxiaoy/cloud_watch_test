@@ -2,7 +2,7 @@ import os
 import errno
 
 import logging
-from logging.handlers import RotatingFileHandler
+from logging.handlers import TimedRotatingFileHandler
 from logging.config import dictConfig
 import yaml
 import json
@@ -19,23 +19,25 @@ def mkdir_p(path):
         raise
 
 
-class MakeFileHandler(RotatingFileHandler):
+class MakeFileHandler(TimedRotatingFileHandler):
     def __init__(self, filename, **kwargs):
         mkdir_p(os.path.dirname(filename))
-        RotatingFileHandler.__init__(self, filename, **kwargs)
+        TimedRotatingFileHandler.__init__(self, filename=filename, when="D", **kwargs)
 
 
 class JsonFormatter(logging.Formatter):
     def format(self, record):
         # 创建一个字典来保存日志记录的信息
         log_entry = {
-            'asctime': self.formatTime(record, self.datefmt),
-            'name': record.name,
-            'levelname': record.levelname,
-            'thread': record.thread,
-            'threadName': record.threadName,
-            'message': record.getMessage(),
-            'lineno': record.lineno,
+            "asctime": self.formatTime(record, self.datefmt),
+            "name": record.name,
+            "levelname": record.levelname,
+            "thread": record.thread,
+            "threadName": record.threadName,
+            "message": record.getMessage(),
+            "lineno": record.lineno,
+            "processId": record.process,
+            "processName": record.processName,
         }
 
         # 添加其他字段，如异常信息等
