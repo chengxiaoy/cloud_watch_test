@@ -24,9 +24,7 @@ handlers:
     class: log_utils.MakeFileHandler
     filename: log/logconfig.log
     formatter: json
-    mode: "a"
     encoding: "utf-8"
-    maxBytes: 52428800
     backupCount: 3
 
 loggers:
