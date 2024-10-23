@@ -32,11 +32,11 @@ class JsonFormatter(logging.Formatter):
             "asctime": self.formatTime(record, self.datefmt),
             "name": record.name,
             "levelname": record.levelname,
-            "thread": record.thread,
+            "thread": str(record.thread),
             "threadName": record.threadName,
             "message": record.getMessage(),
-            "lineno": record.lineno,
-            "processId": record.process,
+            "lineno": str(record.lineno),
+            "processId": str(record.process),
             "processName": record.processName,
         }
 
